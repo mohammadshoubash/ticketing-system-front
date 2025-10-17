@@ -2,7 +2,7 @@ import AppLayout from "../layouts/AppLayout.jsx"
 import DashboardWidget from "../components/DashboardWidget.jsx"
 import Breadcrumb from "../components/Breadcrumb.jsx"
 import DashboardFilter from "../components/DashboardFilter.jsx"
-import data from "../data/dumydata.json"
+import dummydata from "../data/dummydata.json"
 
 export default function Dashboard() {
   return (
@@ -12,7 +12,7 @@ export default function Dashboard() {
           <Breadcrumb items={[{ label: "Dashboard", href: "#" }]} />
           <div className="flex justify-between items-center mb-6 bg-yellow-500">
             <h1 className="text-3xl font-bold">Dashboard</h1>
-            <a href="/create-ticket" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer">Create Ticket</a>
+            <a href="/create-ticket" className="primary-btn text-white font-bold py-2 px-4 rounded cursor-pointer">Create Ticket</a>
           </div>
         </div>
 
@@ -33,39 +33,49 @@ export default function Dashboard() {
 
 
         {/* Tickets Table */}
-        <table className="min-w-full bg-white mt-6 rounded-xl shadow-2xl overflow-hidden">
+        <table className="w-full table-fixed sm:table-auto bg-white mt-6 rounded-xl shadow-2xl overflow-hidden">
           <thead>
             <tr>
               <th>Ticket ID</th>
-              <th>Status</th>
+              <th>Customer</th>
               <th>Type</th>
               <th>Priority</th>
-              <th>Customer</th>
               <th>Department</th>
+              <th>Status</th>
               <th>Country</th>
               <th>Date</th>
               <th>Comment</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
             {/* Dummy data */}
-            {{ data.map(ticket => (
+            { 
+              dummydata.map(ticket => (
                 <tr key={ticket.id}>
-                  <td>{ticket.status}</td>
-                  <td>Open</td>
-                  <td>non-voice</td>
-                  <td>High</td>
-                  <td>John Doe</td>
-                  <td>Support</td>
-                  <td>USA</td>
-                  <td>2025-10-15</td>
-                  <td>Issue with login</td>
+                  <td><b>#{ticket.id}</b></td>
+                  <td>{ticket.customerName}</td>
+                  <td>{ticket.type == "voice" ? "Voice" : "Non-Voice"}</td>
+                  <td>
+                    {ticket.priority == "High" ? <span className="text-red-600 bg-red-100 px-4 py-1 rounded-full border-1">{ticket.priority}</span> : 
+                    ticket.priority == "Medium" ? <span className="text-yellow-600 bg-yellow-100 px-4 py-1 rounded-full border-1">{ticket.priority}</span> : 
+                    <span className="text-green-600 bg-green-100 px-4 py-1 rounded-full border-1">{ticket.priority}</span>}</td>
+                  <td>{ticket.department}</td>
+                  <td>{ticket.status == "Open" ? <span className="text-yellow-600 bg-yellow-100 px-4 py-1 rounded-full border-1"><i className="fa fa-circle-info"></i> {ticket.status}</span> : 
+                    ticket.status == "Closed" ? <span className="text-green-600 bg-green-100 px-4 py-1 rounded-full border-1"><i className="fa fa-check-circle"></i> {ticket.status}</span> :  
+                    ticket.status == "Unassigned" ? <span className="text-red-600 bg-red-100 px-4 py-1 rounded-full border-1">{ticket.status}</span> : 
+                    <span className="text-blue-600 bg-blue-100 px-4 py-1 rounded-full border-1"><i className="fa fa-circle-play"></i> {ticket.status}</span>}</td>
+                  <td>{ticket.country}</td>
+                  <td>{new Date(ticket.createdAt).toDateString("dd/MM/yyyy")}</td>
+                  <td className="max-w-full">{ticket.comment}</td>
+                  <td>
+                    <a href={`/ticket/${ticket.id}`} target="_blank" className="primary-btn text-white font-bold py-2 px-4 rounded">
+                      <i className="fa fa-eye"></i>
+                    </a>
+                  </td>
                 </tr>
-              )) 
-            }}
-            <tr>
-              
-            </tr>
+              ))
+            }
           </tbody>
         </table>
       </div>

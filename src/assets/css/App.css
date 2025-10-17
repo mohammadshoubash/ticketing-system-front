@@ -6,7 +6,30 @@
   --another-yellow-color: #BBBF45;
 }
 
+*{
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 td, th {
   border: 1px solid var(--gray-color);
-  padding: 10px;
+  padding: 13px;
+}
+
+.btn-active {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn-active:hover {
+  background-color: var(--light-color);
+}
+
+.primary-btn {
+  color: white;
+  background-color: var(--primary-color);
+  transition: .5s;
+}
+
+.primary-btn:hover {
+  color: var(--yellow-color);
 }
