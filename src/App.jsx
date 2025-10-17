@@ -9,6 +9,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Dashboard />} />
+        <Route path='/dashboard' element={<Dashboard />} />
         <Route path='/create-ticket' element={<CreateTicket />} />
         <Route path='/ticket/:id' element={<TicketDetails />} />
       </Routes>

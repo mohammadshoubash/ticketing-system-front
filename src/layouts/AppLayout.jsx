@@ -3,11 +3,9 @@ import Sidebar from '../components/Sidebar.jsx'
 
 export default function AppLayout({ children }) {
   return (
-    <div className="app-layout">
+    <div className="app-layout relative bg-gray-100 min-h-screen">
         <Navbar />
-        <Sidebar />
-        
-        <main className='container'>{children}</main>
+        <main className='container mx-auto'>{children}</main>
     </div>
   )
 }

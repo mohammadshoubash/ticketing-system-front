@@ -1,10 +1,12 @@
 :root {
-  --primary-color: #111;
-  --secondary-color: #f4f4f4;
-  --accent-color: #007bff;
-  --font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --font-size: 16px;
-  --line-height: 1.5;
-  --background-color: #f4f4f4;
-  --text-color: #111;
+  --primary-color: #03A64A;
+  --light-color: #04BF45;
+  --gray-color: #D9D9D9;
+  --yellow-color: #D3D932;
+  --another-yellow-color: #BBBF45;
+}
+
+td, th {
+  border: 1px solid var(--gray-color);
+  padding: 10px;
 }

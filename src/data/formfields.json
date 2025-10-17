@@ -1,0 +1,14 @@
+[
+    {
+        "label": "Customer Name",
+        "type": "text",
+        "ordering": 1,
+        "required": "on"
+    },
+    {
+        "label": "Mobile Number",
+        "type": "number",
+        "ordering": 2,
+        "required": "on"
+    }
+]

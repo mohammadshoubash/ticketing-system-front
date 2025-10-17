@@ -1,0 +1,169 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "status": "Open",
+      "type": "non-voice",
+      "priority": "High",
+      "customerName": "John Doe",
+      "department": "IT",
+      "createdAt": "2023-10-01T10:15:30Z",
+      "country": "USA",
+      "formFields": {
+        "customerName": "John Doe",
+        "mobileNumber": "+1234567890"
+      },
+      "comment": "Issue with logging in to the system."
+    },
+    {
+      "id": 2,
+      "status": "In Progress",
+      "type": "voice",
+      "priority": "Medium",
+      "customerName": "Jane Smith",
+      "department": "HR",
+      "createdAt": "2023-10-02T11:20:45Z",
+      "country": "Canada",
+      "formFields": {
+        "customerName": "Jane Smith",
+        "mobileNumber": "+1987654321"
+      },
+      "comment": "Request for new employee onboarding."
+    },
+    {
+      "id": 3,
+      "status": "Closed",
+      "type": "non-voice",
+      "priority": "Low",
+      "customerName": "Alice Johnson",
+      "department": "Finance",
+      "createdAt": "2023-10-03T09:05:15Z",
+      "country": "UK",
+      "formFields": {
+        "customerName": "Alice Johnson",
+        "mobileNumber": "+447123456789"
+      },
+      "comment": "Inquiry about expense reimbursement."
+    },
+    {
+      "id": 4,
+      "status": "Open",
+      "type": "voice",
+      "priority": "High",
+      "customerName": "Bob Brown",
+      "department": "Sales",
+      "createdAt": "2023-10-04T14:30:00Z",
+      "country": "Australia",
+      "formFields": {
+        "customerName": "Bob Brown",
+        "mobileNumber": "+61234567890"
+      },
+      "comment": "Problem with accessing sales dashboard."
+    },
+    {
+      "id": 5,
+      "status": "In Progress",
+      "type": "non-voice",
+      "priority": "Medium",
+      "customerName": "Charlie Davis",
+      "department": "Marketing",
+      "createdAt": "2023-10-05T16:45:20Z",
+      "country": "Germany",
+      "formFields": {
+        "customerName": "Charlie Davis",
+        "mobileNumber": "+491234567890"
+      },
+      "comment": "Request for new marketing materials."
+    },
+    {
+      "id": 6,
+      "status": "Closed",
+      "type": "voice",
+      "priority": "Low",
+      "customerName": "Diana Evans",
+      "department": "Support",
+      "createdAt": "2023-10-06T12:10:55Z",
+      "country": "France",
+      "formFields": {
+        "customerName": "Diana Evans",
+        "mobileNumber": "+33123456789"
+      },
+      "comment": "Feedback on recent support experience."
+    },
+    {
+      "id": 7,
+      "status": "Open",
+      "type": "non-voice",
+      "priority": "High",
+      "customerName": "Ethan Foster",
+      "department": "Development",
+      "createdAt": "2023-10-07T08:25:40Z",
+      "country": "India",
+      "formFields": {
+        "customerName": "Ethan Foster",
+        "mobileNumber": "+911234567890"
+      },
+      "comment": "Bug report in the latest software update."
+    },
+    {
+      "id": 8,
+      "status": "In Progress",
+      "type": "voice",
+      "priority": "Medium",
+      "customerName": "Fiona Green",
+      "department": "Operations",
+      "createdAt": "2023-10-08T15:55:10Z",
+      "country": "Japan",
+      "formFields": {
+        "customerName": "Fiona Green",
+        "mobileNumber": "+811234567890"
+      },
+      "comment": "Operational efficiency improvement suggestions."
+    },
+    {
+      "id": 9,
+      "status": "Closed",
+      "type": "non-voice",
+      "priority": "Low",
+      "customerName": "George Harris",
+      "department": "Logistics",
+      "createdAt": "2023-10-09T13:35:25Z",
+      "country": "Brazil",
+      "formFields": {
+        "customerName": "George Harris",
+        "mobileNumber": "+551234567890"
+      },
+      "comment": "Logistics tracking system issue."
+    },
+    {
+      "id": 10,
+      "status": "Open",
+      "type": "voice",
+      "priority": "High",
+      "customerName": "Hannah Irving",
+      "department": "Customer Service",
+      "createdAt": "2023-10-10T17:40:50Z",
+      "country": "Italy",
+      "formFields": {
+        "customerName": "Hannah Irving",
+        "mobileNumber": "+391234567890"
+      },
+      "comment": "Customer service platform downtime."
+    },
+    {
+      "id": 11,
+      "status": "In Progress",
+      "type": "non-voice",
+      "priority": "Medium",
+      "customerName": "Ian Jackson",
+      "department": "Legal",
+      "createdAt": "2023-10-11T10:50:35Z",
+      "country": "Spain",
+      "formFields": {
+        "customerName": "Ian Jackson",
+        "mobileNumber": "+341234567890"
+      },
+      "comment": "Legal document review request."
+    }
+  ]
+}

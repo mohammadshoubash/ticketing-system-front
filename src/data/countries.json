@@ -1,0 +1,34 @@
+[
+    {
+        "common": "Aruba",
+        "native": {
+            "nld": {
+                "common": "Aruba",
+                "official": "Aruba"
+            },
+            "pap": {
+                "common": "Aruba",
+                "official": "Aruba"
+            }
+        },
+        "official": "Aruba"
+    },
+    {
+        "common": "Afghanistan",
+        "native": {
+            "prs": {
+                "common": "افغانستان",
+                "official": "جمهوری اسلامی افغانستان"
+            },
+            "pus": {
+                "common": "افغانستان",
+                "official": "د افغانستان اسلامي جمهوریت"
+            },
+            "tuk": {
+                "common": "Owganystan",
+                "official": "Owganystan Yslam Respublikasy"
+            }
+        },
+        "official": "Islamic Republic of Afghanistan"
+    }
+]
