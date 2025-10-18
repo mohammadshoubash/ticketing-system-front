@@ -21,10 +21,10 @@ export default function Navbar() {
               </div>
               <div class="hidden sm:ml-6 sm:block">
                 <div class="flex space-x-4">
-                  <a href="#" aria-current="page" class="rounded-md px-3 py-2 text-sm font-medium text-white btn-active">Dashboard</a>
-                  <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-800 hover:text-gray-700">Team</a>
-                  <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-800 hover:text-gray-700">Projects</a>
-                  <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-800 hover:text-gray-700">Calendar</a>
+                  <a href="/" aria-current="page" class="rounded-md px-3 py-2 text-sm font-medium text-white btn-active">Dashboard</a>
+                  <a href="/create-ticket" class="rounded-md px-3 py-2 text-sm font-medium text-gray-800 hover:text-gray-700">Create Ticket</a>
+                  {/* <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-800 hover:text-gray-700">Projects</a>
+                  <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-800 hover:text-gray-700">Calendar</a> */}
                 </div>
               </div>
             </div>

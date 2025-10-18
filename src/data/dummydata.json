@@ -2,6 +2,7 @@
   {
     "id": 1,
     "status": "Open",
+    "title": "Login Issue",
     "type": "non-voice",
     "priority": "High",
     "customerName": "John Doe",
@@ -17,6 +18,7 @@
   {
     "id": 2,
     "status": "In Progress",
+    "title": "Onboarding Request",
     "type": "voice",
     "priority": "Medium",
     "customerName": "Jane Smith",
@@ -32,6 +34,7 @@
   {
     "id": 3,
     "status": "Closed",
+    "title": "Expense Reimbursement",
     "type": "non-voice",
     "priority": "Low",
     "customerName": "Alice Johnson",
@@ -47,6 +50,7 @@
   {
     "id": 4,
     "status": "Open",
+    "title": "Sales Dashboard Issue",
     "type": "voice",
     "priority": "High",
     "customerName": "Bob Brown",
@@ -62,6 +66,7 @@
   {
     "id": 5,
     "status": "In Progress",
+    "title": "Marketing Materials Request",
     "type": "non-voice",
     "priority": "Medium",
     "customerName": "Charlie Davis",
@@ -77,6 +82,7 @@
   {
     "id": 6,
     "status": "Closed",
+    "title": "Support Feedback",
     "type": "voice",
     "priority": "Low",
     "customerName": "Diana Evans",
@@ -92,6 +98,7 @@
   {
     "id": 7,
     "status": "Open",
+    "title": "Software Bug Report",
     "type": "non-voice",
     "priority": "High",
     "customerName": "Ethan Foster",
@@ -107,6 +114,7 @@
   {
     "id": 8,
     "status": "In Progress",
+    "title": "Operational Efficiency Suggestions",
     "type": "voice",
     "priority": "Medium",
     "customerName": "Fiona Green",
@@ -122,6 +130,7 @@
   {
     "id": 9,
     "status": "Closed",
+    "title": "Logistics Tracking Issue",
     "type": "non-voice",
     "priority": "Low",
     "customerName": "George Harris",
@@ -137,6 +146,7 @@
   {
     "id": 10,
     "status": "Open",
+    "title": "Customer Service Platform Downtime",
     "type": "voice",
     "priority": "High",
     "customerName": "Hannah Irving",
@@ -152,6 +162,7 @@
   {
     "id": 11,
     "status": "In Progress",
+    "title": "Legal Document Review",
     "type": "non-voice",
     "priority": "Medium",
     "customerName": "Ian Jackson",

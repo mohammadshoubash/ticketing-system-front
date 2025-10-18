@@ -1,4 +1,4 @@
-export default function Breadcrumb() {
+export default function Breadcrumb({pageName}) {
   return (
     <nav class="flex" aria-label="Breadcrumb">
       <ol class="mb-4 inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
@@ -37,7 +37,7 @@ export default function Breadcrumb() {
               />
             </svg>
             <a
-              href="#"
+              href="/"
               class="ms-1 text-sm font-medium text-gray-700 hover:text-green-600 md:ms-2"
             >
               Tickets
@@ -62,7 +62,7 @@ export default function Breadcrumb() {
               />
             </svg>
             <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">
-              Create
+              {pageName}
             </span>
           </div>
         </li>

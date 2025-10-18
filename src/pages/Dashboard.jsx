@@ -135,7 +135,7 @@ export default function Dashboard() {
                   <td>{new Date(ticket.createdAt).toDateString("dd/MM/yyyy")}</td>
                   <td className="max-w-full">{ticket.comment}</td>
                   <td>
-                    <a href={`/ticket/${ticket.id}`} target="_blank" className="primary-btn-outline text-white font-bold py-2 px-4 rounded">
+                    <a href={`/ticket/${ticket.id}`} className="primary-btn-outline text-white font-bold py-2 px-4 rounded">
                       <i className="fa fa-eye"></i>
                     </a>
                   </td>

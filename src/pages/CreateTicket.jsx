@@ -8,7 +8,7 @@ import formfields from '../data/formfields.json'
 export default function CreateTicket() {
   return (
     <AppLayout>
-      <Breadcrumb />
+      <Breadcrumb pageName="Create" />
       
       <div className="mb-6">
         <h1 className="text-3xl font-bold">Create new Ticket</h1>
