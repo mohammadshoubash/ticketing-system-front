@@ -76,4 +76,7 @@ td {
 
 input, select, textarea {
   border: 1px solid var(--gray-color);
+  padding: 10px;
+  border-radius: 5px;
+  background-color: white;
 }
