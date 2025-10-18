@@ -1,11 +1,11 @@
 export default function Breadcrumb() {
   return (
     <nav class="flex" aria-label="Breadcrumb">
-      <ol class="bg-gray-500 mb-4 inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+      <ol class="mb-4 inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
         <li class="inline-flex items-center">
           <a
             href="#"
-            class="inline-flex items-center text-sm font-medium hover:text-blue-600 dark:text-gray-400 dark:hover:text-white"
+            class="inline-flex items-center text-sm font-medium hover:text-green-600 transition"
           >
             <svg
               class="w-3 h-3 me-2.5 text-gray-700"
@@ -38,9 +38,9 @@ export default function Breadcrumb() {
             </svg>
             <a
               href="#"
-              class="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white"
+              class="ms-1 text-sm font-medium text-gray-700 hover:text-green-600 md:ms-2"
             >
-              Projects
+              Tickets
             </a>
           </div>
         </li>
@@ -62,7 +62,7 @@ export default function Breadcrumb() {
               />
             </svg>
             <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">
-              Flowbite
+              Create
             </span>
           </div>
         </li>

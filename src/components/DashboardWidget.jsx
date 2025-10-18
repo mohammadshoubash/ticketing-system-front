@@ -1,6 +1,6 @@
 export default function Dashboard({ classes, title, value }) {
   return (
-    <div className="grid grid-cols-2 bg-white p-6 rounded-xl shadow-2xl items-center space-x-4 gap-2">
+    <div className="grid grid-cols-2 bg-white p-6 rounded-xl shadow-xl items-center space-x-4 gap-2">
       {/* icon */}
       <i className={classes}></i>
 

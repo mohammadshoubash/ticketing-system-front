@@ -1,14 +1,20 @@
 [
     {
+        "id": 1,
         "label": "Customer Name",
         "type": "text",
         "ordering": 1,
-        "required": "on"
+        "required": "on",
+        "placeholder": "Enter Customer full name",
+        "name": "customerName"
     },
     {
+        "id": 2,
         "label": "Mobile Number",
         "type": "number",
         "ordering": 2,
-        "required": "on"
+        "required": "on",
+        "placeholder": "Enter Mobile number",
+        "name": "mobileNumber"
     }
 ]
