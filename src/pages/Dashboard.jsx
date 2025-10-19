@@ -119,21 +119,31 @@ export default function Dashboard() {
             { 
               dummydata.map(ticket => (
                 <tr key={ticket.id}>
+                  {/* Ticket ID */}
                   <td><b>#{ticket.id}</b></td>
+                  {/* Customer Name */}
                   <td>{ticket.customerName}</td>
+                  {/* Ticket Type */}
                   <td>{ticket.type == "voice" ? "Voice" : "Non-Voice"}</td>
+                  {/* Ticket Priority */}
                   <td>
                     {ticket.priority == "High" ? <span className="text-red-600 bg-red-100 px-4 py-1 rounded-full border-1">{ticket.priority}</span> : 
                     ticket.priority == "Medium" ? <span className="text-yellow-600 bg-yellow-100 px-4 py-1 rounded-full border-1">{ticket.priority}</span> : 
                     <span className="text-green-600 bg-green-100 px-4 py-1 rounded-full border-1">{ticket.priority}</span>}</td>
+                  {/* Department */}
                   <td>{ticket.department}</td>
+                  {/* Ticket Status */}
                   <td>{ticket.status == "Open" ? <span className="text-yellow-600 bg-yellow-100 px-4 py-1 rounded-full border-1"><i className="fa fa-circle-info"></i> {ticket.status}</span> : 
                     ticket.status == "Closed" ? <span className="text-green-600 bg-green-100 px-4 py-1 rounded-full border-1"><i className="fa fa-check-circle"></i> {ticket.status}</span> :  
                     ticket.status == "Unassigned" ? <span className="text-red-600 bg-red-100 px-4 py-1 rounded-full border-1">{ticket.status}</span> : 
                     <span className="text-blue-600 bg-blue-100 px-4 py-1 rounded-full border-1"><i className="fa fa-circle-play"></i> {ticket.status}</span>}</td>
+                  {/* Country */}
                   <td>{ticket.country}</td>
+                  {/* Date */}
                   <td>{new Date(ticket.createdAt).toDateString("dd/MM/yyyy")}</td>
+                  {/* Ticket Comment */}
                   <td className="max-w-full">{ticket.comment}</td>
+                  {/* Actions */}
                   <td>
                     <a href={`/ticket/${ticket.id}`} className="primary-btn-outline text-white font-bold py-2 px-4 rounded">
                       <i className="fa fa-eye"></i>

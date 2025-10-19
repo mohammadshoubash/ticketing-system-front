@@ -14,7 +14,16 @@
         "type": "number",
         "ordering": 2,
         "required": "on",
-        "placeholder": "Enter Mobile number",
-        "name": "mobileNumber"
+        "placeholder": "Enter Customer Mobile number",
+        "name": "customerNumber"
+    },
+    {
+        "id": 3,
+        "label": "Customer Email",
+        "type": "text",
+        "ordering": 3,
+        "required": "on",
+        "placeholder": "Enter Customer Email",
+        "name": "customerEmail"
     }
 ]
