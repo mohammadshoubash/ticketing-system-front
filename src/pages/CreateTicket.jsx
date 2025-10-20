@@ -49,7 +49,7 @@ export default function CreateTicket() {
           <select className="w-full p-2 rounded" id="priority" name="priority">
             <option value="">Select Priority</option>
             {priorities.map((priority) => (
-              <option key={priority.value} value={priority.value}>
+              <option key={priority.priority} value={priority.priority}>
                 {priority.priority}
               </option>
             ))}
@@ -112,7 +112,7 @@ export default function CreateTicket() {
         {/* Customer Details */}
         <div className="mt-4">
           <h2 className="text-xl">Cutomer Information</h2>
-          <hr className="mb-4 mt-2 text-gray-300" />
+          <hr className="mt-2 mb-4 text-gray-300" />
         </div>
 
         {/* Form fields */}
@@ -143,13 +143,13 @@ export default function CreateTicket() {
 
         <div className="flex items-center gap-2">
           <button
-            className="primary-btn px-4 py-2 rounded cursor-pointer"
+            className="px-4 py-2 rounded cursor-pointer primary-btn"
             type="submit"
           >
             Create Ticket
           </button>
           <a
-            className="secondary-btn px-4 py-2 rounded cursor-pointer"
+            className="px-4 py-2 rounded cursor-pointer secondary-btn"
             href="/"
           >
             Back
