@@ -26,7 +26,7 @@ export default function CreateTicket() {
           }, {
             headers : {
               'Content-Type': 'multipart/form-data',
-              'Authorization': 'Bearer 5|d169c3wNgXqbFQWt9y0wyLI2lffq3qnQKB5NS0qY93bea2a1'
+              'Authorization': 'Bearer 1|rxlqLiflSm14NJQcYeO31brwuuN1LsymZxe9xKKMc129d5d3'
             }
           });
 
