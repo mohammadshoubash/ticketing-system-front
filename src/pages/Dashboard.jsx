@@ -15,6 +15,8 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js'
+import { useEffect, useState } from "react"
+import axios from "axios"
 
 ChartJS.register(
   CategoryScale,
@@ -27,86 +29,92 @@ ChartJS.register(
 )
 
 export default function Dashboard() {
-  // Fake data for Chart.js
-  // const ticketData = {
-  //   labels: Array.from({ length: 20 }, (_, i) => {
-  //     const date = new Date()
-  //     date.setDate(date.getDate() - (19 - i))
-  //     return date.toISOString().split('T')[0]
-  //   }),
-  //   datasets: [
-  //     {
-  //       label: 'Tickets Created',
-  //       data: [12, 19, 15, 25, 22, 30, 28, 35, 32, 38, 40, 45, 42, 50, 48, 55, 60, 58, 65, 70],
-  //       borderColor: '#03A64A',
-  //       backgroundColor: 'rgba(59, 130, 246, 0.1)',
-  //       tension: 0.3,
-  //       pointBackgroundColor: '#D3D932',
-  //       pointBorderColor: '#BBBF45',
-  //       pointHoverBackgroundColor: '#fff',
-  //       pointHoverBorderColor: '#03A64A',
-  //     },
-  //   ],
-  // }
+  let total;
+  let closed;
+  let open;
+  let inprogress;
+  
+  useEffect(() => {
+      async function fetchData() {
+          const response = await axios.get('http://127.0.0.1:8000/api/tickets');
+          const content = document.getElementById('tableBody');
+          
+          for(let i = 0; i < response.data.length; i++){
+            content.innerHTML += (`<tr key=${response.data[i].id}>
+                  <td><b>#${response.data[i].id}</b></td>
+                  
+                  <td>${response.data[i].form_fields.customerName}</td>
+                  
+                  <td>${response.data[i].type == "voice" ? "Voice" : "Non-Voice"}</td>
+                  
+                  <td>${response.data[i].priority}</td>
+                  
+                  <td>${response.data[i].form_fields.mobileNumber}</td>
 
-  // const options = {
-  //   responsive: true,
-  //   plugins: {
-  //     legend: {
-  //       position: 'top',
-  //     },
-  //     title: {
-  //       display: true,
-  //       text: 'Tickets Created Over Last 10 Days',
-  //     },
-  //   },
-  //   scales: {
-  //     y: {
-  //       beginAtZero: true,
-  //       ticks: {
-  //         stepSize: 5,
-  //       },
-  //     },
-  //   },
-  // }
+                  <td>${response.data[i].status}</td>
+                  
+                  <td>${response.data[i].country}</td>
+                  
+                  <td>${new Date(response.data[i].created_at).toDateString("dd/MM/yyyy")}</td>
+                  
+                  <td class="max-w-full">${response.data[i].comment}</td>
+
+                  <td>
+                    <a class="px-4 py-2 font-bold text-white rounded primary-btn-outline" href='/ticket/${response.data[i].id}'>
+                      <i class="fa fa-eye"></i>
+                    </a>
+                  </td>
+                </tr>`);
+          }
+
+          total = response.data.length;
+          closed = response.data.filter(ticket => ticket.status == 'Closed').length;
+          open = response.data.filter(ticket => ticket.status == 'Open').length;
+          inprogress = response.data.filter(ticket => ticket.status == 'In Progress').length;
+      }
+
+      fetchData();
+    }, []
+  );
 
   return (
     <AppLayout>
         <Breadcrumb pageName="Dashboard" />
 
         {/* Header */}        
-        <div className="flex justify-between items-center mb-6">
+        <div className="flex items-center justify-between mb-6">
           <h1 className="text-3xl font-bold">Dashboard</h1>
-          <a href="/create-ticket" className="primary-btn text-white font-bold py-2 px-4 rounded cursor-pointer">Create Ticket</a>
+          <a href="/create-ticket" className="px-4 py-2 font-bold text-white rounded cursor-pointer primary-btn">Create Ticket</a>
         </div>
 
         {/* Widgets */}
-        <div className="max-w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <DashboardWidget value={312} title="Total" classes="fa fa-envelope-open-text fa-3x text-blue-500" />
-          <DashboardWidget value={41} title="Open" classes="fa fa-ticket fa-3x text-yellow-500" />
-          <DashboardWidget value={41} title="Unassigned" classes="fa fa-xmark-circle fa-3x text-red-500" />
-          <DashboardWidget value={22} title="Closed" classes="fa fa-check-circle fa-3x text-green-500" />
+        <div className="grid max-w-full grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+          <DashboardWidget value={total} title="Total" classes="fa fa-envelope-open-text fa-3x text-blue-500" />
+          <DashboardWidget value={open} title="Open" classes="fa fa-ticket fa-3x text-yellow-500" />
+          <DashboardWidget value={inprogress} title="In Progress" classes="fa fa-solid fa-spinner fa-3x text-red-500" />
+          <DashboardWidget value={closed} title="Closed" classes="fa fa-check-circle fa-3x text-green-500" />
         </div>
 
         {/* Chart.js */}
-        {/* <div className="h-96 mt-6 bg-white p-4 rounded-xl shadow-xl">
+        {/* <div className="p-4 mt-6 bg-white shadow-xl h-96 rounded-xl">
           <Line data={ticketData} options={options} />
         </div>
          */}
+         
         {/* Filter and Search */}
         <div className="mt-6">
           <DashboardFilter />
         </div>
 
         {/* Tickets Table */}
-        <table className="w-full table-fixed sm:table-auto bg-white mt-6 rounded-xl shadow-xl overflow-hidden">
+        <table className="w-full mt-6 overflow-hidden bg-white shadow-xl table-fixed sm:table-auto rounded-xl">
           <thead>
             <tr>
               <th>Ticket ID</th>
               <th>Customer</th>
               <th>Type</th>
               <th>Priority</th>
-              <th>Department</th>
+              <th>Mobile Number</th>
               <th>Status</th>
               <th>Country</th>
               <th>Date</th>
@@ -114,49 +122,49 @@ export default function Dashboard() {
               <th>Actions</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="tableBody">
             {/* Dummy data */}
             { 
-              dummydata.map(ticket => (
-                <tr key={ticket.id}>
-                  {/* Ticket ID */}
-                  <td><b>#{ticket.id}</b></td>
-                  {/* Customer Name */}
-                  <td>{ticket.customerName}</td>
-                  {/* Ticket Type */}
-                  <td>{ticket.type == "voice" ? "Voice" : "Non-Voice"}</td>
-                  {/* Ticket Priority */}
-                  <td>
-                    {ticket.priority == "High" ? <span className="text-red-600 bg-red-100 px-4 py-1 rounded-full border-1">{ticket.priority}</span> : 
-                    ticket.priority == "Medium" ? <span className="text-yellow-600 bg-yellow-100 px-4 py-1 rounded-full border-1">{ticket.priority}</span> : 
-                    <span className="text-green-600 bg-green-100 px-4 py-1 rounded-full border-1">{ticket.priority}</span>}</td>
-                  {/* Department */}
-                  <td>{ticket.department}</td>
-                  {/* Ticket Status */}
-                  <td>{ticket.status == "Open" ? <span className="text-yellow-600 bg-yellow-100 px-4 py-1 rounded-full border-1"><i className="fa fa-circle-info"></i> {ticket.status}</span> : 
-                    ticket.status == "Closed" ? <span className="text-green-600 bg-green-100 px-4 py-1 rounded-full border-1"><i className="fa fa-check-circle"></i> {ticket.status}</span> :  
-                    ticket.status == "Unassigned" ? <span className="text-red-600 bg-red-100 px-4 py-1 rounded-full border-1">{ticket.status}</span> : 
-                    <span className="text-blue-600 bg-blue-100 px-4 py-1 rounded-full border-1"><i className="fa fa-circle-play"></i> {ticket.status}</span>}</td>
-                  {/* Country */}
-                  <td>{ticket.country}</td>
-                  {/* Date */}
-                  <td>{new Date(ticket.createdAt).toDateString("dd/MM/yyyy")}</td>
-                  {/* Ticket Comment */}
-                  <td className="max-w-full">{ticket.comment}</td>
-                  {/* Actions */}
-                  <td>
-                    <a href={`/ticket/${ticket.id}`} className="primary-btn-outline text-white font-bold py-2 px-4 rounded">
-                      <i className="fa fa-eye"></i>
-                    </a>
-                  </td>
-                </tr>
-              ))
+              // dummydata.map(ticket => (
+              //   <tr key={ticket.id}>
+              //     {/* Ticket ID */}
+              //     <td><b>#{ticket.id}</b></td>
+              //     {/* Customer Name */}
+              //     <td>{ticket.customerName}</td>
+              //     {/* Ticket Type */}
+              //     <td>{ticket.type == "voice" ? "Voice" : "Non-Voice"}</td>
+              //     {/* Ticket Priority */}
+              //     <td>
+              //       {ticket.priority == "High" ? <span className="px-4 py-1 text-red-600 bg-red-100 rounded-full border-1">{ticket.priority}</span> : 
+              //       ticket.priority == "Medium" ? <span className="px-4 py-1 text-yellow-600 bg-yellow-100 rounded-full border-1">{ticket.priority}</span> : 
+              //       <span className="px-4 py-1 text-green-600 bg-green-100 rounded-full border-1">{ticket.priority}</span>}</td>
+              //     {/* Department */}
+              //     <td>{ticket.department}</td>
+              //     {/* Ticket Status */}
+              //     <td>{ticket.status == "Open" ? <span className="px-4 py-1 text-yellow-600 bg-yellow-100 rounded-full border-1"><i className="fa fa-circle-info"></i> {ticket.status}</span> : 
+              //       ticket.status == "Closed" ? <span className="px-4 py-1 text-green-600 bg-green-100 rounded-full border-1"><i className="fa fa-check-circle"></i> {ticket.status}</span> :  
+              //       ticket.status == "Unassigned" ? <span className="px-4 py-1 text-red-600 bg-red-100 rounded-full border-1">{ticket.status}</span> : 
+              //       <span className="px-4 py-1 text-blue-600 bg-blue-100 rounded-full border-1"><i className="fa fa-circle-play"></i> {ticket.status}</span>}</td>
+              //     {/* Country */}
+              //     <td>{ticket.country}</td>
+              //     {/* Date */}
+              //     <td>{new Date(ticket.createdAt).toDateString("dd/MM/yyyy")}</td>
+              //     {/* Ticket Comment */}
+              //     <td className="max-w-full">{ticket.comment}</td>
+              //     {/* Actions */}
+              //     <td>
+              //       <a href={`/ticket/${ticket.id}`} className="px-4 py-2 font-bold text-white rounded primary-btn-outline">
+              //         <i className="fa fa-eye"></i>
+              //       </a>
+              //     </td>
+              //   </tr>
+              // ))
             }
           </tbody>
         </table>
 
         {/* Pagination */}
-        <div className="mt-2 flex justify-center">
+        <div className="flex justify-center mt-2">
           <Pagination currentPage={1} totalPages={10} onPageChange={(page) => console.log("Go to page:", page)} />
         </div>
     </AppLayout>

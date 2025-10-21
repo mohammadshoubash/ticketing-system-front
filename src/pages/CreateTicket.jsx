@@ -4,8 +4,39 @@ import priorities from "../data/priorities.json";
 import countries from "../data/countries.json";
 import languages from "../data/languages.json";
 import formfields from "../data/formfields.json";
+import { useEffect } from "react";
+import axios from "axios";
 
 export default function CreateTicket() {
+
+  useEffect(() => {
+      // const fd = new FormData();
+    
+      async function fetchData() {
+          const response = await axios.post('http://127.0.0.1:8000/api/tickets', {
+            title : "new title",
+            type : "voice",
+            priority : "High",
+            comment : "this is comment",
+            attachment : "",
+            country : "Jordan",
+            language : "English",
+            status : "Open",
+            user_id : 1
+          }, {
+            headers : {
+              'Content-Type': 'multipart/form-data',
+              'Authorization': 'Bearer 5|d169c3wNgXqbFQWt9y0wyLI2lffq3qnQKB5NS0qY93bea2a1'
+            }
+          });
+
+          console.log(response.data);
+      }
+
+      fetchData();
+    }, []
+  );
+  
   return (
     <AppLayout>
       <Breadcrumb pageName="Create" />
