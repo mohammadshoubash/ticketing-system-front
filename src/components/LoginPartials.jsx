@@ -1,5 +1,14 @@
+import { useNavigate } from "react-router-dom";
+import axios from 'axios';
+
 export default function LoginPartials() {
     const isAuthenticated = (localStorage.getItem('auth-token') == null);
+    let navigate = useNavigate();
+
+    const handleLogout = async (e) => {
+        localStorage.removeItem('auth-token');
+        window.location.assign('/');
+    }
 
 return <>
         {
@@ -21,7 +30,7 @@ return <>
                     <el-menu anchor="bottom end" popover class="w-48 origin-top-right rounded-md bg-white py-1 shadow-lg outline outline-black/5 transition transition-discrete [--anchor-gap:--spacing(2)] data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in">
                         <a href="#" class="block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:outline-hidden">Your profile</a>
                         <a href="#" class="block px-4 py-2 text-sm text-gray-700 focus:bg-gray-100 focus:outline-hidden">Settings</a>
-                        <a href="#" class="block px-4 py-2 text-sm text-red-700 focus:bg-red-100 focus:outline-hidden">Sign out</a>
+                        <button onClick={handleLogout} class="block w-full cursor-pointer text-left px-4 py-2 text-sm text-red-700 focus:bg-red-100 focus:outline-hidden">Sign out</button>
                     </el-menu>
                 </el-dropdown>
             </div>

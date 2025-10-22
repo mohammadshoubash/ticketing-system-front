@@ -2,10 +2,27 @@ import AppLayout from '../layouts/AppLayout.jsx'
 import { useParams } from 'react-router-dom';
 import Breadcrumb from '../components/Breadcrumb.jsx';
 import dummydata from '../data/dummydata.json';
+import { useEffect } from 'react';
+import axios from 'axios';
 
 export default function TicketDetails() {
   const {id} = useParams();
   const ticket = dummydata.find(ticket => ticket.id === parseInt(id));
+
+  useEffect(async () => {
+    async function fetchData() {
+      const response = await axios.get(`http://127.0.0.1:8000/api/tickets/${id}`, {
+        headers : {
+          'Content-Type' : 'application/json',
+          Authorization : `Bearer ${localStorage.getItem('auth-token')}`
+        }
+      });
+
+      console.log(response.data);
+    }
+
+    fetchData();
+  }, []);
 
   return (
     <AppLayout>
@@ -15,10 +32,10 @@ export default function TicketDetails() {
         <h1 className="text-3xl font-bold">Ticket #{id} - {ticket.title}</h1>
       </div>
 
-      <div className="bg-white p-6 rounded-xl shadow-xl space-y-6">
+      <div className="p-6 space-y-6 bg-white shadow-xl rounded-xl">
         {/* Customer Info */}
         <div className="flex items-center space-x-4">
-          <div className="w-12 h-12 rounded-full bg-gray-300 flex items-center justify-center">
+          <div className="flex items-center justify-center w-12 h-12 bg-gray-300 rounded-full">
             <svg className="w-6 h-6 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
             </svg>
@@ -30,7 +47,7 @@ export default function TicketDetails() {
         </div>
 
         {/* Status and Priority */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <div className="flex items-center space-x-2">
             <span className="text-sm font-medium text-gray-700">Status:</span>
             <span className={`px-3 py-1 text-xs font-medium rounded-full ${
@@ -55,7 +72,7 @@ export default function TicketDetails() {
         </div>
 
         {/* Other Details */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           <div>
             <span className="text-sm font-medium text-gray-700">Type:</span>
             <p className="text-sm text-gray-900">{ticket.type}</p>
@@ -77,11 +94,9 @@ export default function TicketDetails() {
         {/* Comment */}
         <div>
           <span className="text-sm font-medium text-gray-700">Comment:</span>
-          <p className="mt-1 text-sm text-gray-900 bg-gray-50 p-3 rounded-lg">{ticket.comment}</p>
+          <p className="p-3 mt-1 text-sm text-gray-900 rounded-lg bg-gray-50">{ticket.comment}</p>
         </div>
       </div>
-
-
     </AppLayout>
   )
 }

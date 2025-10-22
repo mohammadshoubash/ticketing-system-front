@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AuthLayout from "../../layouts/AuthLayout";
 import AuthService from "../../services/AuthService";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
@@ -22,28 +24,21 @@ export default function Login() {
         e.preventDefault();
         setLoading(true);
         setError("");
-
-        try {
-            const response = await AuthService.login(email, password);
-
-            if (response.token) {
-                localStorage.setItem('auth-token', response.token.plainTextToken);
-                localStorage.setItem('user', JSON.stringify(response.user));
-                navigate('/');
-            } else {
-                setError(response.message || "Login failed");
-            }
-        } catch (err) {
-            setError(err.response?.data?.message || "Something went wrong");
-        } finally {
-            setLoading(false);
+        
+        const response = await AuthService.login(email, password);
+        if (response.token) {
+            localStorage.setItem('auth-token', response.token.plainTextToken);
+            localStorage.setItem('user', JSON.stringify(response.user));
+            navigate('/');
+        } else {
+            setError(response.message || "Login failed");
         }
     };
 
     return <AuthLayout>
         <h1 className="mb-4 text-3xl font-bold">Login page</h1>
 
-        {error && <div className="text-red-500 mb-4">{error}</div>}
+        {error && <div className="mb-4 text-red-500">{error}</div>}
 
         <form onSubmit={handleSubmit}>
             <div className="my-4">

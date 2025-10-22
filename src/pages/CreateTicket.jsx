@@ -4,38 +4,32 @@ import priorities from "../data/priorities.json";
 import countries from "../data/countries.json";
 import languages from "../data/languages.json";
 import formfields from "../data/formfields.json";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function CreateTicket() {
+    async function handleCreatingTicket() {
+        const formData = new FormData();
 
-  useEffect(() => {
-      // const fd = new FormData();
-    
-      async function fetchData() {
-          const response = await axios.post('http://127.0.0.1:8000/api/tickets', {
-            title : "new title",
-            type : "voice",
-            priority : "High",
-            comment : "this is comment",
-            attachment : "",
-            country : "Jordan",
-            language : "English",
-            status : "Open",
-            user_id : 1
-          }, {
-            headers : {
-              'Content-Type': 'multipart/form-data',
-              'Authorization': 'Bearer 1|rxlqLiflSm14NJQcYeO31brwuuN1LsymZxe9xKKMc129d5d3'
-            }
-          });
+        formData.append('title', document.getElementById('title').value);
+        formData.append('type', document.getElementById('type').value);
+        formData.append('comment', document.getElementById('comment').value);
+        formData.append('priority', document.getElementById('priority').value);
+        formData.append('country', document.getElementById('country').value);
+        formData.append('language', document.getElementById('language').value);
+        formData.append('status', 'Open');
+        formData.append('user_id', JSON.parse(localStorage.getItem('user')).id);
+        formData.append('attachment', document.getElementById('file_input').files[0] ?? '');
 
-          console.log(response.data);
-      }
+        const res = await axios.post('http://127.0.0.1:8000/api/tickets', formData , {
+          headers : {
+            'Content-Type': 'multipart/form-data',
+            Authorization: `Bearer ${localStorage.getItem('auth-token')}`
+          }
+        });
 
-      fetchData();
-    }, []
-  );
+        return res.data;
+    }
   
   return (
     <AppLayout>
@@ -45,7 +39,7 @@ export default function CreateTicket() {
         <h1 className="text-3xl font-bold">Create new Ticket</h1>
       </div>
 
-      <form encType="multipart/form-data">
+      <form onSubmit={handleCreatingTicket} encType="multipart/form-data">
         {/* Title */}
         <div className="mb-4">
           <label className="block mb-2 font-medium" htmlFor="title">
@@ -141,13 +135,13 @@ export default function CreateTicket() {
         </div>
         
         {/* Customer Details */}
-        <div className="mt-4">
+        {/* <div className="mt-4">
           <h2 className="text-xl">Cutomer Information</h2>
           <hr className="mt-2 mb-4 text-gray-300" />
-        </div>
+        </div> */}
 
         {/* Form fields */}
-        {formfields.map((field) => (
+        {/* {formfields.map((field) => (
           <div className="mb-4" key={field.id}>
             <label className="block mb-2 font-medium" htmlFor={field.id}>
               {field.label}
@@ -170,7 +164,7 @@ export default function CreateTicket() {
               />
             )}
           </div>
-        ))}
+        ))} */}
 
         <div className="flex items-center gap-2">
           <button
