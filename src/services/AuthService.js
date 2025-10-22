@@ -2,16 +2,36 @@ import axios from "axios"
 
 const base_url = "http://localhost:8000/api";
 
-axios.post(base_url + '/login', {
-    email : "mohammad@gmail.com",
-    password : "12341234"
-}).then(res => console.log(res));
+const AuthService = {
+    async login(email, password) {
+        const response = await axios.post(base_url + '/login', {
+            email: email,
+            password: password,
+            password_confirmation: password
+        });
+        return response.data;
+    },
 
-axios.post(base_url + '/register', {
-    email : "ahmad@gmail.com",
-    name : "ahmad",
-    password : "12341234",
-    password_confirmation : "12341234"
-}).then(res => console.log(res));
+    async register(name, email, password, password_confirmation) {
+        const response = await axios.post(base_url + '/register', {
+            name: name,
+            email: email,
+            password: password,
+            password_confirmation: password_confirmation
+        });
+        return response.data;
+    },
 
-axios.get(base_url + '/profile');
+    async getProfile() {
+        const token = localStorage.getItem('auth-token');
+        const response = await axios.get(base_url + '/profile', {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        });
+        return response.data;
+    }
+};
+
+export default AuthService;
