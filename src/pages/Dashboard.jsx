@@ -3,19 +3,10 @@ import DashboardWidget from "../components/DashboardWidget.jsx"
 import Breadcrumb from "../components/Breadcrumb.jsx"
 import DashboardFilter from "../components/DashboardFilter.jsx"
 import Pagination from "../components/Pagination.jsx"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import axios from "axios"
 
 export default function Dashboard() {
-  const [tickets, setTickets] = useState([]);
-  const [stats, setStats] = useState({
-    total: 0,
-    closed: 0,
-    open: 0,
-    inprogress: 0
-  });
-  const [loading, setLoading] = useState(true);
-
   useEffect(() => {
       async function fetchData() {
           const response = await axios.get('http://127.0.0.1:8000/api/tickets', {
@@ -39,13 +30,13 @@ export default function Dashboard() {
               content.innerHTML += (`<tr key=${ticket.id}>
                   <td><b>#${ticket.id}</b></td>
                   
-                  <td>${ticket.form_fields.customerName}</td>
+                  <td>${'N/A'}</td>
                   
                   <td>${ticket.type == "voice" ? "Voice" : "Non-Voice"}</td>
                   
                   <td>${ticket.priority}</td>
                   
-                  <td>${ticket.form_fields.mobileNumber}</td>
+                  <td>${'N/A'}</td>
 
                   <td>${ticket.status}</td>
                   
@@ -64,10 +55,7 @@ export default function Dashboard() {
             });
           }
 
-          total = response.data.length;
-          closed = response.data.filter(ticket => ticket.status == 'Closed').length;
-          open = response.data.filter(ticket => ticket.status == 'Open').length;
-          inprogress = response.data.filter(ticket => ticket.status == 'In Progress').length;
+          console.log(response.data);
       }
 
 
@@ -87,10 +75,10 @@ export default function Dashboard() {
 
         {/* Widgets */}
         <div className="grid max-w-full grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-          <DashboardWidget value={stats.total} title="Total" classes="fa fa-envelope-open-text fa-3x text-blue-500" />
-          <DashboardWidget value={stats.open} title="Open" classes="fa fa-ticket fa-3x text-yellow-500" />
-          <DashboardWidget value={stats.inprogress} title="In Progress" classes="fa fa-solid fa-spinner fa-3x text-red-500" />
-          <DashboardWidget value={stats.closed} title="Closed" classes="fa fa-check-circle fa-3x text-green-500" />
+          <DashboardWidget value={123} title="Total" classes="fa fa-envelope-open-text fa-3x text-blue-500" />
+          <DashboardWidget value={123} title="Open" classes="fa fa-ticket fa-3x text-yellow-500" />
+          <DashboardWidget value={123} title="In Progress" classes="fa fa-solid fa-spinner fa-3x text-red-500" />
+          <DashboardWidget value={123} title="Closed" classes="fa fa-check-circle fa-3x text-green-500" />
         </div>
 
         {/* Filter and Search */}
