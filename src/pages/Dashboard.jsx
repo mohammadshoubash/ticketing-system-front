@@ -54,8 +54,6 @@ export default function Dashboard() {
                 </tr>`);
             });
           }
-
-          console.log(response.data);
       }
 
 
